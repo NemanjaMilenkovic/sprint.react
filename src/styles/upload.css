@@ -1,0 +1,12 @@
+.button {
+  cursor: pointer;
+}
+
+input {
+  position: absolute;
+  left: -99999999px;
+}
+
+button {
+  height: 2rem;
+}

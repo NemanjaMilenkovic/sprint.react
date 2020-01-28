@@ -1,0 +1,51 @@
+{
+  "name": "sprint.react",
+  "version": "1.0.0",
+  "description": "Let's see how you react to this!",
+  "main": "app.js",
+  "license": "MIT",
+  "author": "Nel Milenkovic <nemanja.milenkovic@gmail.com>",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "precommit": "pretty-quick --staged"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.8.4",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "aws-sdk": "^2.610.0",
+    "lodash": "^4.17.4",
+    "path": "^0.12.7",
+    "prop-types": "^15.6.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "react-scripts": "3.3.0",
+    "redux": "^4.0.5",
+    "shortid": "^2.2.15"
+  },
+  "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.10.0",
+    "husky": "^0.14.3",
+    "prettier": "^1.12.1",
+    "pretty-quick": "^1.4.1",
+    "react-test-renderer": "^16.12.0",
+    "sinon": "^7.2.7"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "resolutions": {
+    "**/@babel/runtime": "7.5.0"
+  }
+}

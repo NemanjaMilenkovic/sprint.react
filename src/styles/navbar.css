@@ -1,0 +1,11 @@
+.navbar {
+  padding: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  background-color: #1c7e88;
+}
+
+.navbar-header {
+  cursor: pointer;
+  margin-right: auto;
+}
