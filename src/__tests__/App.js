@@ -66,32 +66,32 @@ describe("The App component", () => {
     ).toEqual(2);
   });
 
-  it("gives the Navbar component a callback titled getPhotos", () => {
+  it("gives the Navbar component a callback titled setCurrentView", () => {
     expect(
       wrapper
         .find(".app")
         .children()
         .find(Navbar)
         .props()
-        .hasOwnProperty("getPhotos")
+        .hasOwnProperty("setCurrentView")
     ).toEqual(true);
     expect(
       typeof wrapper
         .find(".app")
         .children()
         .find(Navbar)
-        .props().getPhotos
+        .props().setCurrentView
     ).toEqual("function");
   });
 
-  it("modifies its own state, setting the photos property to an array of received items when the getPhotos callback if the Navbar is invoked", () => {
+  it("modifies its own state, setting the photos property to an array of received items when the setSelectedPhoto callback if the Navbar is invoked", () => {
     wrapper = mount(<App currentView="AllPhotos" />);
     wrapper.setState({ photos: [] });
     expect(wrapper.state().photos).toEqual([]);
     wrapper
       .find(Navbar)
       .props()
-      .getPhotos();
+      .setSelectedPhoto("ALL_PHOTOS");
     setTimeout(() => {
       expect(wrapper.state().photos).toEqual([
         "First TestReturnString",
