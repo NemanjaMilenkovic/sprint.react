@@ -9,7 +9,7 @@ export default function Upload(props) {
         id="uploader"
         type="file"
         onChange={e => {
-          if (e.target.files.length) props.uploadFile(e.target.files[0]);
+          if (e.target.files.length) props.uploadPhoto(e.target.files[0]);
         }}
       />
       <button
