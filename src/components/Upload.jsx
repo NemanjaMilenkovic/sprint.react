@@ -9,8 +9,6 @@ export default function Upload(props) {
         id="uploader"
         type="file"
         onChange={e => {
-          console.log("e.target", e.target);
-          console.log("e.target.files", e.target.files);
           if (e.target.files.length) props.uploadFile(e.target.files[0]);
         }}
       />

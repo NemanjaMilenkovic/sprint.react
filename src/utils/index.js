@@ -17,6 +17,26 @@ const bucket = new AWS.S3({
   }
 });
 
+export function deleteObject(key) {
+  const getSingleObject = new Promise((resolve, reject) => {
+    bucket.deleteObject(
+      {
+        Bucket: bucketName,
+        Key: key
+      },
+      (error, data) => {
+        if (error) {
+          console.error("error: ", error);
+          return;
+        }
+        resolve(true);
+      }
+    );
+  });
+
+  return getSingleObject;
+}
+
 export function listObjects() {
   const listObjects = new Promise((resolve, reject) => {
     bucket.listObjects((error, data) => {

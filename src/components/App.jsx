@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import "../styles/styles.css";
 
 import Navbar from "./Navbar.jsx";
 import AllPhotos from "./AllPhotos.jsx";
 import SinglePhoto from "./SinglePhoto.jsx";
 
-import { listObjects, getSingleObject, saveObject } from "../utils/index.js";
+import {
+  listObjects,
+  getSingleObject,
+  saveObject,
+  deleteObject
+} from "../utils/index.js";
+
+const baguetteBox = window.baguetteBox;
 
 export default function App() {
   const [currentView, setCurrentView] = useState("ALL_PHOTOS");
@@ -23,13 +30,17 @@ export default function App() {
     setCurrentView("LOADING");
     listObjects().then(data => {
       let numPhotos = data.length;
+      if (numPhotos === photos.length) return setCurrentView("ALL_PHOTOS");
       let numCompleted = 0;
       const newPhotos = [];
       setLoading(`loading ${numCompleted}/${numPhotos} images`);
 
-      data.forEach(el =>
+      data.forEach((el, i) =>
         getSingleObject(el.Key).then(string => {
-          newPhotos.push(string);
+          newPhotos.push({
+            base64: string,
+            fileName: data[i].Key
+          });
           numCompleted++;
           setLoading(`loading ${numCompleted}/${numPhotos} images`);
 
@@ -48,13 +59,14 @@ export default function App() {
   useEffect(() => {
     reloadPhotos();
   }, []);
+  useEffect(() => {
+    baguetteBox.run(".tz-gallery");
+  }, [photos]);
 
   let body = "";
-  if (currentView === "ALL_PHOTOS") {
-    body = <AllPhotos photos={photos} setImageIndex={setImageIndex} />;
-  } else if (currentView === "SINGLE_PHOTO") {
+  if (currentView === "SINGLE_PHOTO") {
     body = <SinglePhoto selectedPhoto={selectedPhoto} />;
-  } else {
+  } else if (currentView === "LOADING") {
     body = <div>{loading}</div>;
   }
 
@@ -62,6 +74,11 @@ export default function App() {
     <div className="app">
       <Navbar setCurrentView={setCurrentView} uploadFile={uploadFile} />
       {body}
+      <AllPhotos
+        photos={photos}
+        setImageIndex={setImageIndex}
+        currentView={currentView}
+      />
     </div>
   );
 }
