@@ -1,8 +1,8 @@
 import React from "react";
-import { AppContext } from "./App.jsx";
+import { useSelector } from "react-redux";
 
 export default function SinglePhoto(props) {
-  const { state } = React.useContext(AppContext);
+  const state = useSelector(state => state);
   return (
     <img
       className="single-photo"

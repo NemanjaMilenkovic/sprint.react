@@ -1,18 +1,21 @@
 import React from "react";
-import { AppContext, createSetSelectedPhotoAction } from "./App.jsx";
+import { useSelector, useDispatch } from "react-redux";
+import { createSetSelectedPhotoAction } from "../redux.js";
 import shortid from "shortid";
 import _ from "lodash";
 import "../styles/fluid-gallery.css";
 
 export default function AllPhotos(props) {
-  const { state, dispatch } = React.useContext(AppContext);
+  const photos = useSelector(state => state.photos);
+  const currentView = useSelector(state => state.currentView);
+  const dispatch = useDispatch();
   return (
     <div
-      style={{ display: state.currentView === "ALL_PHOTOS" ? "block" : "none" }}
+      style={{ display: currentView === "ALL_PHOTOS" ? "block" : "none" }}
       className="tz-gallery"
     >
       <div className="row">
-        {state.photos.map((photo, i) => {
+        {photos.map((photo, i) => {
           return (
             <div className="col-sm-4 col-md-2" key={shortid.generate()}>
               <div className="image-wrapper">

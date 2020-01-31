@@ -1,12 +1,12 @@
 import React from "react";
-import { AppContext, createSetViewAction } from "./App.jsx";
+import { useDispatch } from "react-redux";
+import { createSetViewAction } from "../redux.js";
 
 import "../styles/navbar.css";
-import _ from "lodash";
 import Upload from "./Upload";
 
 export default function Navbar(props) {
-  const { state, dispatch } = React.useContext(AppContext);
+  const dispatch = useDispatch();
   return (
     <div className="navbar">
       <div

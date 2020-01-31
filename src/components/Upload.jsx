@@ -1,5 +1,4 @@
 import React from "react";
-import _ from "lodash";
 import "../styles/upload.css";
 
 export default function Upload(props) {
@@ -8,8 +7,9 @@ export default function Upload(props) {
       <input
         id="uploader"
         type="file"
-        onChange={e => {
-          if (e.target.files.length) props.uploadPhoto(e.target.files[0]);
+        onChange={event => {
+          if (event.target.files.length)
+            props.uploadPhoto(event.target.files[0]);
         }}
       />
       <button
